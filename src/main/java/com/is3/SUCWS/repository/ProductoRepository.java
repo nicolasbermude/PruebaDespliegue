@@ -1,15 +1,15 @@
 package com.is3.SUCWS.repository;
 
-import java.io.Serializable;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import com.is3.SUCWS.entity.Producto;
+import org.springframework.data.jpa.repository.Query;
+import com.is3.SUCWS.model.ProductosModel;
 
 
-@Repository("repoproducto")
-public interface ProductoRepository extends JpaRepository <Producto, Serializable>{
+public interface ProductoRepository extends JpaRepository<ProductosModel, Long>{
 	
-	
-   public abstract Producto findByIdproducto (int idproducto);
+   @Query(value = "SELECT pr FROM ProductosModel pr WHERE pr.nombre_p like %?1%")
+    List<ProductosModel> findByName(String nombre);
 
 }

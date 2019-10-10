@@ -1,31 +1,61 @@
 package com.is3.SUCWS.model;
 
-import com.is3.SUCWS.entity.Sugerencia;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "sugerencia")
 public class SugerenciaModel {
-
-public SugerenciaModel(int idsugerencia,String tema, String descripcion_s) {
-		
-		super();
-		
-		this.idsugerencia = idsugerencia;
-		this.tema=tema;
-		this.descripcion_s=descripcion_s;
-		
-		
-		}
-
-public SugerenciaModel(Sugerencia sugerencia ) {
 	
-	this.tema=sugerencia.getTema();
-	this.descripcion_s=sugerencia.getDescripcion_s();
-	this.idsugerencia=sugerencia.getIdsugerencia();
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idsugerencia")
+    private Long id;
+	
+	@Column(name = "descripcion_s")
+    private String descripcion;
+	
+	@Column(name = "tema")
+    private String tema; 
+	
+	@ManyToOne
+    @JoinColumn(name = "pedidosidpedido", referencedColumnName = "idpedido")
+    private PedidoModel pedido;
 
-}
+	public SugerenciaModel() {
+		
+	}
 
-	private String tema;
-	private String descripcion_s;
-	private int idsugerencia;
+	public SugerenciaModel(Long id, String descripcion, String tema, PedidoModel pedido) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.tema = tema;
+		this.pedido = pedido;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public String getTema() {
 		return tema;
 	}
@@ -34,23 +64,13 @@ public SugerenciaModel(Sugerencia sugerencia ) {
 		this.tema = tema;
 	}
 
-	public String getDescripcion_s() {
-		return descripcion_s;
+	public PedidoModel getPedido() {
+		return pedido;
 	}
 
-	public void setDescripcion_s(String descripcion_s) {
-		this.descripcion_s = descripcion_s;
+	public void setPedido(PedidoModel pedido) {
+		this.pedido = pedido;
 	}
-
-	public int getIdsugerencia() {
-		return idsugerencia;
-	}
-
-	public void setIdsugerencia(int idsugerencia) {
-		this.idsugerencia = idsugerencia;
-	}
-
-
-
+	
 
 }

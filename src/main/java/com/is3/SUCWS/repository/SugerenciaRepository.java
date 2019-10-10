@@ -1,18 +1,15 @@
 package com.is3.SUCWS.repository;
 
-import java.io.Serializable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import com.is3.SUCWS.entity.Sugerencia;
+import com.is3.SUCWS.model.SugerenciaModel;
 
-@Repository("reposugerencia")
 
-public interface SugerenciaRepository extends JpaRepository <Sugerencia, Serializable> {
+
+public interface SugerenciaRepository extends JpaRepository <SugerenciaModel, Long> {
 
 	
-	   public abstract Sugerencia findByIdsugerencia (int idsugerencia);
 
 }
 
